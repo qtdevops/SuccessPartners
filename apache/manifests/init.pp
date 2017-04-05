@@ -49,7 +49,7 @@ class apache {
         'Debian' => 'apache2',
    }
    package { $pack_name:
-       ensure => installed,
+       ensure => purged,
        
    }
 }
