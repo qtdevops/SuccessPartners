@@ -48,8 +48,20 @@ class apache {
         'RedHat' => 'http',
         'Debian' => 'apache2',
    }
+ #  package { $pack_name:
+ #      ensure => 'purged',
+ #      
+ # }
+
    package { $pack_name:
-       ensure => 'purged',
-       
-   }
+      ensure => 'installed',
+      
+    }
+    service { $pack_name:
+        ensure     => running,
+        enable     => true,
+        hasrestart => true,
+        hasstatus  => true,
+        # pattern    => $pack_name,
+    }
 }
