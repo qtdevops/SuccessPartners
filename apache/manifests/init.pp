@@ -44,5 +44,7 @@
 #
 class apache {
 
-  include apache::uninstall
+  # include apache::uninstall
+  include apache::install
+  include apache::service
 }
