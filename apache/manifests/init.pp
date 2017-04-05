@@ -1,7 +1,7 @@
-# Class: SuccessPartners
+# Class: apache
 # ===========================
 #
-# Full description of class SuccessPartners here.
+# Full description of class apache here.
 #
 # Parameters
 # ----------
@@ -28,7 +28,7 @@
 # --------
 #
 # @example
-#    class { 'SuccessPartners':
+#    class { 'apache':
 #      servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
 #    }
 #
@@ -42,24 +42,14 @@
 #
 # Copyright 2017 Your name here, unless otherwise noted.
 #
-class SuccessPartners {
-        $pack_name = $ facts['os']['family']?{
-            'RedHat' = 'httpd',
-            'Debian' = 'apache',
+class apache {
 
-        }
-
-        package { pack_name:
-            ensure => purge,
-            
-        }
-
-        #service { pack_name:
-          #  ensure     => running,
-           # enable     => true,
-            #hasrestart => true,
-            #hasstatus  => true,
-            # pattern    => pack_name,
-       # }
-
+   $pack_name = $facts['os']['family'] ? {
+        'RedHat' => 'http',
+        'Debian' => 'apache2',
+   }
+   package { $pack_name:
+       ensure => installed,
+       
+   }
 }
